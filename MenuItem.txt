@@ -1,0 +1,68 @@
+package com.example.menu;
+
+public class MenuItem {
+    private String name;
+    private double price;
+    private String imagePath;
+
+    // Getters and setters
+
+    public MenuItem(String name, double price, String imagePath) {
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+}
+}
+
+public class Order {
+    private List<MenuItem> items;
+    private String customerName;
+
+    // Constructor, getters, and setters
+public Order(List<MenuItem> items, String customerName) {
+        this.items = items;
+        this.customerName = customerName;
+    }
+
+    public List<MenuItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<MenuItem> items) {
+        this.items = items;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+}
+}

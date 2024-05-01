@@ -1,0 +1,54 @@
+package com.example.menu;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.IOException;
+
+public class WorldFusion extends Application {
+    private VBox menuLayout;
+    private Label totalLabel;
+    private List<MenuItem> menuItems = new ArrayList<>();
+    private ApiClient apiClient = new ApiClient("http://your-api-url.com"/);
+
+    @Override
+    public void start(Stage primaryStage) {
+        menuLayout = new VBox(10);
+        // Setup VBox, Labels, Buttons as existing setup
+
+        loadMenuItems();
+
+        Scene scene = new Scene(menuLayout, 400, 800);
+        primaryStage.setTitle("World Fusion");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void loadMenuItems() {
+        try {
+            MenuItem[] items = apiClient.getMenuItems();
+            for (MenuItem item : items) {
+                addMenuItem(menuLayout, item.getName(), item.getPrice(), item.getImagePath());
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace(); // handle exceptions properly
+        }
+    }
+
+    private void performCheckout() {
+        Order order = new Order(menuItems, customerName);
+        try {
+            String response = apiClient.placeOrder(order);
+            System.out.println("Order response: " + response);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
